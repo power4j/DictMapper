@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+dict-mapper:
+  # 如果需要扫描 @SpringBootApplication 范围外的包，就需要在这里设置
+  scan-packages: com.yo.ho
+  # 启用内建的API接口
+  enable-endpoint: true
+  # 字典接口URL
+  endpoint-base-url: /sys/immutable-dictionaries

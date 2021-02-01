@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2020 ChenJun (power4j@outlook.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.power4j.kit</groupId>
+  <artifactId>dict-mapper</artifactId>
+  <version>0.1.1-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <packaging>pom</packaging>
+
+  <url>https://github.com/power4j/DictMapper</url>
+  <description>将枚举映射为数据字典,可用于前后端共享数据字典</description>
+
+  <licenses>
+    <license>
+      <name>APACHE LICENSE, VERSION 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>power4j</name>
+    <url>https://github.com/power4j</url>
+  </organization>
+
+  <scm>
+    <url>https://github.com/power4j/DictMapper</url>
+    <connection>scm:git:git://github.com/power4j/DictMapper.git</connection>
+    <developerConnection>scm:git:https://github.com/power4j/DictMapper.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>ChenJun</name>
+      <email>powe4j@outlook.com</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <skipTests>true</skipTests>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring-javaformat.plugin.version>0.0.25</spring-javaformat.plugin.version>
+    <git.commit.plugin.version>2.2.5</git.commit.plugin.version>
+    <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+    <swagger3-core.version>2.1.6</swagger3-core.version>
+    <hutool.version>5.4.7</hutool.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <modules>
+    <module>dict-mapper-spring-boot-starter</module>
+    <module>dict-mapper-demo</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger3-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- deploy-plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.0.0-M1</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!-- source-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- deploy-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
+      </plugin>
+      <!-- surefire-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <skipTests>${skipTests}</skipTests>
+        </configuration>
+      </plugin>
+      <!-- spring-javaformat-plugin -->
+      <plugin>
+        <groupId>io.spring.javaformat</groupId>
+        <artifactId>spring-javaformat-maven-plugin</artifactId>
+        <version>${spring-javaformat.plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <inherited>true</inherited>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- git-commit-id-plugin -->
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>${git.commit.plugin.version}</version>
+      </plugin>
+      <!-- release plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <scmCommentPrefix>chore(maven release): </scmCommentPrefix>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <goals>deploy</goals>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>oss-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <charset>UTF-8</charset>
+              <docencoding>UTF-8</docencoding>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <additionalJOption>-Xdoclint:none</additionalJOption>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>travis-ci</id>
+      <build>
+        <plugins>
+          <!-- jacoco-maven-plugin -->
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.6</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
