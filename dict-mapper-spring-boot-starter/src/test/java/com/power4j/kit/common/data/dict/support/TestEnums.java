@@ -12,7 +12,7 @@ import com.power4j.kit.common.data.dict.annotation.Styled;
  * @date 2021/2/23
  * @since 1.0
  */
-public interface Tests {
+public interface TestEnums {
 
 	// @formatter:off
 	interface EmptyEnumTest {
