@@ -60,6 +60,12 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
+    <sonar.projectKey>power4j_DictMapper</sonar.projectKey>
+    <sonar.organization>power4j</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+
     <spring-javaformat.plugin.version>0.0.27</spring-javaformat.plugin.version>
     <git.commit.plugin.version>4.0.3</git.commit.plugin.version>
     <spring-boot.version>2.4.3</spring-boot.version>
@@ -186,6 +192,26 @@
           <tagNameFormat>@{project.version}</tagNameFormat>
           <goals>deploy</goals>
         </configuration>
+      </plugin>
+      <!-- jacoco-maven-plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.6</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
