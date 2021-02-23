@@ -3,6 +3,7 @@
 ![Build Status](https://github.com/power4j/DictMapper/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/33018bc0e99b438f826cd4790fd9ee3b)](https://app.codacy.com/gh/power4j/DictMapper?utm_source=github.com&utm_medium=referral&utm_content=power4j/DictMapper&utm_campaign=Badge_Grade)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=power4j_DictMapper&metric=alert_status)](https://sonarcloud.io/dashboard?id=power4j_DictMapper)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.power4j.kit/dict-mapper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.power4j.kit/dict-mapper)
 
 这是一个从个人项目中剥离出来的小组件，用于前后端统一维护数据字典。在我的项目里面，它叫`常量字典`。
 
