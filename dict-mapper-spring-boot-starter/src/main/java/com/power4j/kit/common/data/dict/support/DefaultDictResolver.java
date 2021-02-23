@@ -36,6 +36,10 @@ import java.util.stream.Collectors;
  */
 public class DefaultDictResolver implements DictResolver {
 
+	final static String ITEM_DEFAULT_STYLE = "";
+
+	final static String ITEM_DEFAULT_REMARKS = "";
+
 	@Override
 	public Optional<Dict> resolve(Class<Enum<?>> enumClass) {
 		MapDict annotation = AnnotationUtils.findAnnotation(enumClass, MapDict.class);
@@ -72,14 +76,18 @@ public class DefaultDictResolver implements DictResolver {
 		return StrUtil.isEmpty(annotation.remarks()) ? defVal : annotation.remarks();
 	}
 
+	protected List<DictItem> getDictItems(MapDict annotation) {
+		return Arrays.stream(annotation.items()).map(o -> createDictItem(o)).collect(Collectors.toList());
+	}
+
 	protected List<DictItem> lookupDictItems(MapDict annotation, Class<Enum<?>> enumClass) {
-		List<DictItem> itemList = Arrays.stream(annotation.items()).map(o -> createDictItem(o))
-				.collect(Collectors.toList());
+		List<DictItem> itemList = getDictItems(annotation);
 		if (!itemList.isEmpty()) {
 			return itemList;
 		}
 
-		ItemResolverHelper helper = new ItemResolverHelper(enumClass).lookup();
+		ItemResolverHelper helper = new ItemResolverHelper(enumClass, ITEM_DEFAULT_STYLE, ITEM_DEFAULT_REMARKS)
+				.lookup();
 
 		if (!helper.getValueFunc().isPresent()) {
 			throw new IllegalStateException(String.format("Could not resolve value for dict item for %s,use %s or %s",

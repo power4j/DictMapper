@@ -22,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 这个注解作用在类变量和方法上
+ * 这个注解作用在类变量和方法上，表示一个字典项的值。 如果没有任何注解申明字典项的值，那么值就是枚举成员的序号
  * @author CJ (power4j@outlook.com)
  * @date 2021/1/27
  * @since 1.0

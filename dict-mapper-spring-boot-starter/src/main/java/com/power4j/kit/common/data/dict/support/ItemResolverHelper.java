@@ -73,6 +73,12 @@ public class ItemResolverHelper {
 	@Nullable
 	private Function<Enum<?>, Object> remarksFunc;
 
+	@Nullable
+	private String defaultStyle;
+
+	@Nullable
+	private String defaultRemarks;
+
 	public static DictItem createDictItem(String value, @Nullable String label, @Nullable String style,
 			@Nullable String remarks, @Nullable Map<String, Object> extra) {
 		DictItem dictItem = new DictItem();
@@ -86,6 +92,12 @@ public class ItemResolverHelper {
 
 	public ItemResolverHelper(Class<Enum<?>> enumClass) {
 		this.enumClass = enumClass;
+	}
+
+	public ItemResolverHelper(Class<Enum<?>> enumClass, String defaultStyle, String defaultRemarks) {
+		this.enumClass = enumClass;
+		this.defaultStyle = defaultStyle;
+		this.defaultRemarks = defaultRemarks;
 	}
 
 	public Optional<Function<Enum<?>, Object>> getLabelFunc() {
@@ -125,16 +137,17 @@ public class ItemResolverHelper {
 			String value = getValueFunc().map(f -> f.apply(em)).map(Object::toString)
 					.orElseThrow(() -> new IllegalStateException("No value for " + enumClass.getName()));
 			String label = getLabelFunc().map(f -> f.apply(em)).map(Object::toString).orElse(value);
-			String style = getStyleFunc().map(f -> f.apply(em)).map(Object::toString).orElse("");
-			String remarks = getRemarksFunc().map(f -> f.apply(em)).map(Object::toString).orElse("");
+			String style = getStyleFunc().map(f -> f.apply(em)).map(Object::toString).orElse(defaultStyle);
+			String remarks = getRemarksFunc().map(f -> f.apply(em)).map(Object::toString).orElse(defaultRemarks);
 			itemList.add(createDictItem(value, label, style, remarks, null));
 		}
 		return itemList;
 	}
 
 	protected boolean processFields() {
-		if (valueFunc == null && fieldMap.containsKey(DictValue.class)) {
-			valueFunc = (o -> filedGet(o, fieldMap.getFirst(DictValue.class)));
+		if (valueFunc == null) {
+			valueFunc = fieldMap.containsKey(DictValue.class) ? (o -> filedGet(o, fieldMap.getFirst(DictValue.class)))
+					: (Enum::ordinal);
 		}
 		return fullFilled();
 	}
@@ -155,11 +168,11 @@ public class ItemResolverHelper {
 		return fullFilled();
 	}
 
-	protected static final String makeEnumConstantKey(Class<Enum<?>> enumClass, Field field) {
+	protected final String makeEnumConstantKey(Class<Enum<?>> enumClass, Field field) {
 		return enumClass.getName() + "." + field.getName();
 	}
 
-	protected static final String makeEnumConstantKey(Enum<?> em) {
+	protected final String makeEnumConstantKey(Enum<?> em) {
 		return em.getClass().getName() + "." + em.name();
 	}
 
