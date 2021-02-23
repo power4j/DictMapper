@@ -67,7 +67,10 @@ curl  -H "Accept: application/json"  "http://127.0.0.1:18081/immutable-dictionar
 
 向前端输出的内容可以自定义，请注意一下`DictConverter`,`DictItemConverter`,`RestResponseProcessor`这几个接口。或者让前端同事适配一下。
 
-> 更多例子见单元测试 [ItemResolverHelperTest](dict-mapper-spring-boot-starter/src/test/java/com/power4j/kit/common/data/dict/support/ItemResolverHelperTest.java), [DefaultDictResolverTest](dict-mapper-spring-boot-starter/src/test/java/com/power4j/kit/common/data/dict/support/DefaultDictResolverTest.java)
+> 详情见演示工程，以及单元测试 
+> - [TestEnums](dict-mapper-spring-boot-starter/src/test/java/com/power4j/kit/common/data/dict/support/TestEnums.java)
+> - [ItemResolverHelperTest](dict-mapper-spring-boot-starter/src/test/java/com/power4j/kit/common/data/dict/support/ItemResolverHelperTest.java)
+> - [DefaultDictResolverTest](dict-mapper-spring-boot-starter/src/test/java/com/power4j/kit/common/data/dict/support/DefaultDictResolverTest.java)
 
 ## 前端集成
 前端项目中,用得比较多的地方就是下拉框组件,借助后端暴露的接口,就不需要前端维护下拉框的选项了。
