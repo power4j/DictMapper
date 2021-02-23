@@ -20,7 +20,7 @@
   <parent>
     <groupId>com.power4j.kit</groupId>
     <artifactId>dict-mapper</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.1.2</version>
   </parent>
 
   <artifactId>dict-mapper-demo</artifactId>

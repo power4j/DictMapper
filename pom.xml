@@ -20,7 +20,7 @@
 
   <groupId>com.power4j.kit</groupId>
   <artifactId>dict-mapper</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
+  <version>0.1.2</version>
   <name>${project.artifactId}</name>
   <packaging>pom</packaging>
 
@@ -44,7 +44,7 @@
     <url>https://github.com/power4j/DictMapper</url>
     <connection>scm:git:git://github.com/power4j/DictMapper.git</connection>
     <developerConnection>scm:git:https://github.com/power4j/DictMapper.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>0.1.2</tag>
   </scm>
 
   <developers>
