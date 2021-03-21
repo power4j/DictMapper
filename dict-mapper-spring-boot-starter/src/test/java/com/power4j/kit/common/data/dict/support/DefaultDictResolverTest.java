@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
+@SuppressWarnings("unchecked")
 class DefaultDictResolverTest {
 
 	@Test

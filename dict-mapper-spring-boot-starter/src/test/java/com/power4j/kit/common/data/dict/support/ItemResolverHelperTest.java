@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 @Slf4j
+@SuppressWarnings("unchecked")
 class ItemResolverHelperTest {
 
 	final static String ITEM_DEFAULT_STYLE = "xx";
