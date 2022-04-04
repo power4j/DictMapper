@@ -68,7 +68,7 @@
 
     <spring-javaformat.plugin.version>0.0.28</spring-javaformat.plugin.version>
     <git.commit.plugin.version>4.0.5</git.commit.plugin.version>
-    <spring-boot.version>2.4.4</spring-boot.version>
+    <spring-boot.version>2.6.6</spring-boot.version>
     <swagger3-core.version>2.1.9</swagger3-core.version>
     <hutool.version>5.7.3</hutool.version>
   </properties>
