@@ -66,7 +66,7 @@
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
 
-    <spring-javaformat.plugin.version>0.0.31</spring-javaformat.plugin.version>
+    <spring-javaformat.plugin.version>0.0.41</spring-javaformat.plugin.version>
     <git.commit.plugin.version>4.0.5</git.commit.plugin.version>
     <spring-boot.version>2.4.4</spring-boot.version>
     <swagger3-core.version>2.1.9</swagger3-core.version>
